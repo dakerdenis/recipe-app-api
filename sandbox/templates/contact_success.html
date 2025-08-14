@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Спасибо{% if name %}, {{ name }}{% endif %}!</h1>
+  <p>Форма успешно отправлена.</p>
+  <p><a href="{% url 'contact' %}">Отправить ещё раз</a></p>
+{% endblock %}

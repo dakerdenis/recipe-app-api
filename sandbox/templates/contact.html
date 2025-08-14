@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+  <h3>{{ title|default:"Contact" }}</h3>
+
+  <form method="post" action="{% url 'contact' %}">
+    {% csrf_token %}
+
+    {{ form.non_field_errors }}
+
+    <p>
+      {{ form.your_name.label_tag }}
+      {{ form.your_name }}
+      {% if form.your_name.help_text %}<small>{{ form.your_name.help_text }}</small>{% endif %}
+      {% if form.your_name.errors %}
+        <br><strong>{{ form.your_name.errors.0 }}</strong>
+      {% endif %}
+    </p>
+
+    <button type="submit">Send</button>
+  </form>
+{% endblock %}
