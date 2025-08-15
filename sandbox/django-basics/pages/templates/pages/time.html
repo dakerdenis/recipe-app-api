@@ -2,4 +2,5 @@
 {% block pages_content %}
   <h1>{{ title |default:"Which time is it now ?"}}</h1>
   <p>Сегодняшне время: {{current_time}}</p>
+  <a href="{% url 'info:about' %}">Подробнее о сайте</a>
 {% endblock %}

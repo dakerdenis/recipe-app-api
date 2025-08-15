@@ -1,0 +1,6 @@
+{% extends "pages/base.html" %}
+{% block pages_content %}
+  <h1>Страница -  - {{title}}</h1>
+  <p>Страница о нас - чем занимаемся - info</p>
+  <a href="{% url 'pages:home' %}">На самую главную страницу !</a>
+{% endblock %}
