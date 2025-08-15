@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="ru">
+  <body>
+    <nav>
+      <a href="{% url 'pages:home' %}">Главная</a> |
+      <a href="{% url 'pages:time' %}">Текущее время</a> |
+      <a href="{% url 'pages:hello'%}">Сказать привет</a>
+    </nav>
+    <hr>
+    {% block pages_content %}{% endblock %}
+  </body>
+</html>

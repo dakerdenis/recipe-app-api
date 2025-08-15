@@ -1,9 +1,0 @@
-# sandbox/docker-compose.yml
-services:
-  web:
-    build: .
-    ports:
-      - "8000:8000"   # поменяй на 8001:8000, если порт занят
-    volumes:
-      - .:/app        # живой перезапуск при изменении кода
-    command: python manage.py runserver 0.0.0.0:8000

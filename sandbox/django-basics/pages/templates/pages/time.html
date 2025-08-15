@@ -1,0 +1,5 @@
+{% extends "./base.html" %}
+{% block pages_content %}
+  <h1>{{ title |default:"Which time is it now ?"}}</h1>
+  <p>Сегодняшне время: {{current_time}}</p>
+{% endblock %}
