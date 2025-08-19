@@ -1,6 +1,41 @@
 {% extends "pages/base.html" %}
 {% block pages_content %}
-  <h1>Страница -  - {{title}}</h1>
+  <h1>Страница - {{ title }}</h1>
   <p>Страница о нас - чем занимаемся - info</p>
   <a href="{% url 'pages:home' %}">На самую главную страницу !</a>
+
+  <hr>
+
+  {% if sent %}
+    <div style="padding:10px; border:1px solid #4caf50; margin:12px 0;">
+      Спасибо, {{ data.name }}! Мы получили ваше сообщение.
+    </div>
+  {% endif %}
+
+  <h2>Связаться с нами</h2>
+
+    <form method="post">
+      {% csrf_token %}
+    
+      <label for="{{ form.name.id_for_label }}">Ваше имя</label>
+      {{ form.name }}
+      {{ form.name.errors }}
+    
+      <label for="{{ form.email.id_for_label }}">Email</label>
+      {{ form.email }}
+      {{ form.email.errors }}
+    
+      <label for="{{ form.message.id_for_label }}">Сообщение</label>
+      {{ form.message }}
+      {{ form.message.errors }}
+    
+      <button type="submit">Отправить</button>
+    </form>
+
+
+  {% if form.errors %}
+    <div style="padding:10px; border:1px solid #f44336; margin-top:12px;">
+      Проверьте поля формы — есть ошибки.
+    </div>
+  {% endif %}
 {% endblock %}
