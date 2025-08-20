@@ -1,0 +1,35 @@
+{% extends "pages/base.html" %}
+{% block pages_content %}
+<h1>Новое сообщение от пользователя</h1>
+
+<p>{{ title }}</p>
+
+{% if sent %}
+  <div style="border:1px solid #4caf50;padding:10px;margin:10px 0;">
+    Сообщение доставлено {{ data.name }} !
+  </div>
+{% endif %}
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+
+  <div>
+    <label for="{{ form.name.id_for_label }}">ФИО</label><br>
+    {{ form.name }} {{ form.name.errors }}
+  </div>
+
+  <div>
+    <label for="{{ form.message.id_for_label }}">Сообщение</label><br>
+    {{ form.message }} {{ form.message.errors }}
+  </div>
+
+
+  <button type="submit">отправить</button>
+</form>
+
+<p>
+    <a href="{% url 'guestbook:list' %}">просмотреть последние сообщения</a>
+</p>
+
+{% endblock %}

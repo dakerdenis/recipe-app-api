@@ -1,0 +1,25 @@
+{% extends "pages/base.html" %}
+{% block pages_content %}
+<h1>Последние заявки</h1>
+тут будут показываться все сообщения от пользователей. 
+
+<p>Страница список -  {{ title }} </p>
+
+
+<table border="1" cellpadding="6">
+  <tr>
+    <th>Когда</th><th>ФИО</th><th>Сообщение</th>
+  </tr>
+  {% for x in guests %}
+  <tr>
+    <td>{{ x.created_at|date:"Y-m-d H:i" }}</td>
+    <td>{{ x.name }}</td>
+    <td>{{ x.message|linebreaksbr }}</td>
+  </tr>
+  {% empty %}
+  <tr><td colspan="4">Пока ничего</td></tr>
+  {% endfor %}
+</table>
+
+<p><a href="{% url 'guestbook:new' %}">отправить сообщение</a></p>
+{% endblock %}

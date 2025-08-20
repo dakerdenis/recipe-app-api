@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'pages',
     'info',
     'leads',
+    'guestbook',
 
 ]
 
