@@ -35,10 +35,35 @@ def subscribe(request):
                 {"title":"Подписка оформлена, спасибо !", "form": SubsribeForm(),"sent":True,"data":data},
             )
     else:
-        form = SubsribeForm()
-        
-        
+        form = SubsribeForm()      
     return render(request, "info/subscribe.html", {"title": "Оформить подписку", "form": form})
+
+
+
+
+
+
+def callback(request):
+    if request.method == 'POST':
+        form = CallbackForm(request.POST)
+        if form.is_valid():
+            first_name = form.cleaned_data["full_name"].split()[0]
+            method = form.cleaned_data["contact_method"]
+            return render(
+                request,
+                "info/callback.html",
+                {"title": "Запрос обратной связи", 
+                 "form": CallbackForm(), 
+                 "sent": True,
+                 "first_name": first_name, 
+                 "method": method}
+            )
+        # НЕ создаём новую пустую форму! Падаем вниз и отрисуем форму с ошибками.
+    else:
+        form = CallbackForm()
+
+    # ВАЖНО: всегда передаём form в контекст
+    return render(request, "info/callback.html", {"title": "Запрос обратной связи", "form": form})
 
 
 
@@ -46,11 +71,3 @@ def subscribe(request):
 
 def contacts(request):
     return render(request, "info/contacts.html", {"title": "Связь с нами"})
-
-
-def callback(request):
-    if request.method == 'POST':
-        form = CallbackForm(request.POST)
-        
-        
-    return render(request, "info/callback.html", {"title": "Запрос обратной связи"})

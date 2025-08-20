@@ -1,0 +1,32 @@
+{% extends "pages/base.html" %}
+{% block pages_content %}
+<h1>Новая заявка</h1>
+
+{% if sent %}
+  <div style="border:1px solid #4caf50;padding:10px;margin:10px 0;">
+    Заявка сохранена!
+  </div>
+{% endif %}
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+
+  <p>
+    <label for="{{ form.full_name.id_for_label }}">ФИО</label><br>
+    {{ form.full_name }} {{ form.full_name.errors }}
+  </p>
+  <p>
+    <label for="{{ form.email.id_for_label }}">Email</label><br>
+    {{ form.email }} {{ form.email.errors }}
+  </p>
+  <p>
+    <label for="{{ form.message.id_for_label }}">Сообщение</label><br>
+    {{ form.message }} {{ form.message.errors }}
+  </p>
+
+  <button type="submit">Сохранить</button>
+</form>
+
+<p><a href="{% url 'leads:list' %}">Посмотреть последние</a></p>
+{% endblock %}

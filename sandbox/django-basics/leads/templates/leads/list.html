@@ -1,0 +1,22 @@
+{% extends "pages/base.html" %}
+{% block pages_content %}
+<h1>Последние заявки</h1>
+
+<table border="1" cellpadding="6">
+  <tr>
+    <th>Когда</th><th>ФИО</th><th>Email</th><th>Сообщение</th>
+  </tr>
+  {% for x in items %}
+  <tr>
+    <td>{{ x.created_at|date:"Y-m-d H:i" }}</td>
+    <td>{{ x.full_name }}</td>
+    <td>{{ x.email }}</td>
+    <td>{{ x.message|linebreaksbr }}</td>
+  </tr>
+  {% empty %}
+  <tr><td colspan="4">Пока ничего</td></tr>
+  {% endfor %}
+</table>
+
+<p><a href="{% url 'leads:new' %}">Создать новую</a></p>
+{% endblock %}

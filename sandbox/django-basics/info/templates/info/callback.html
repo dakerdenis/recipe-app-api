@@ -8,23 +8,45 @@
 
     {% if sent %}
     <div style="padding:10px; border:1px solid #4caf50; margin:12px 0;">
-      Спасибо, {{ data.name }}! Мы свяжемся с вами через 
+      Спасибо, {{ first_name }}! Мы свяжемся с вами по {{ method }}.
     </div>
   {% endif %}
 
     <form method="post">
         {% csrf_token %}
 
-        <label for="{{ form.full_name.id_for_label }}">Полное имя</label>
-        {{ form.full_name }}
-        {{ form.full_name.errors }}
-        метод связи contact_method
-        эмейл email 
-        телефон phone
-        детали details
-        согласен  agree_to_terms
+  {{ form.non_field_errors }}
 
-        <button type="submit">Отправить</button>
+  <label for="{{ form.full_name.id_for_label }}">ФИО</label>
+  {{ form.full_name }}
+  {{ form.full_name.errors }}
+
+  <br>
+  <div>Как связаться</div>
+  {{ form.contact_method }}
+  {{ form.contact_method.errors }}
+<br>
+  <label for="{{ form.email.id_for_label }}">Email</label>
+  {{ form.email }}
+  {{ form.email.errors }}
+<br>
+  <label for="{{ form.phone.id_for_label }}">Телефон</label>
+  {{ form.phone }}
+  {{ form.phone.errors }}
+<br>
+  <label for="{{ form.details.id_for_label }}">Кратко о запросе</label><br>
+  {{ form.details }}
+  {{ form.details.errors }}
+<br>
+  <div style="display:none;">
+    {{ form.hp_code }}
+  </div>
+
+<label>{{ form.agree_to_terms }} {{ form.agree_to_terms.label }}</label>
+{{ form.agree_to_terms.errors }}
+
+
+  <button type="submit">Отправить</button>
     </form>
 
 
