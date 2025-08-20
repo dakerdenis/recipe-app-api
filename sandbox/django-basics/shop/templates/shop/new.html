@@ -1,0 +1,39 @@
+{% extends "pages/base.html" %}
+{% block pages_content %}
+<h1>Новый товар</h1>
+
+{% if sent %}
+  <div style="border:1px solid #4caf50; padding:10px; margin:10px 0;">
+    Товар сохранён!
+  </div>
+{% endif %}
+
+<form method="post" enctype="multipart/form-data"> {# ВАЖНО! #}
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+
+  <p>
+    <label for="{{ form.title.id_for_label }}">Название</label><br>
+    {{ form.title }} {{ form.title.errors }}
+  </p>
+
+  <p>
+    <label for="{{ form.price.id_for_label }}">Цена</label><br>
+    {{ form.price }} {{ form.price.errors }}
+  </p>
+
+  <p>
+    <label for="{{ form.description.id_for_label }}">Описание</label><br>
+    {{ form.description }} {{ form.description.errors }}
+  </p>
+
+  <p>
+    <label for="{{ form.image.id_for_label }}">Фото</label><br>
+    {{ form.image }} {{ form.image.errors }}
+  </p>
+
+  <button type="submit">Сохранить</button>
+</form>
+
+<p><a href="{% url 'shop:list' %}">К списку товаров</a></p>
+{% endblock %}

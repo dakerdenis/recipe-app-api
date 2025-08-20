@@ -6,5 +6,5 @@ class Guest(models.Model):
     message = models.TextField("Сообщение", max_length=1500)
     created_at = models.DateTimeField("Созданое говно", auto_now_add=True)
     
-def __str__(self):
-    return f"{self.name} -  <{self.message}>"
+    def __str__(self):
+        return f"{self.name} -  <{self.message}>"

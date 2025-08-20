@@ -6,22 +6,21 @@ def create_guest(request):
     if request.method == "POST":
         form = GuestForm(request.POST)
         if form.is_valid():
-            form.save()
-            data = form.cleaned_data
+            # ручное сохранение в БД через модель
+            Guest.objects.create(
+                name=form.cleaned_data["name"],
+                message=form.cleaned_data["message"],
+            )
             return render(
                 request,
-                "guestbook/new.html", {
-                    "form": GuestForm(),
-                    "send": True,
-                    "data": data,
-                }
+                "guestbook/new.html",
+                {"form": GuestForm(), "sent": True}  # <<< в шаблоне проверяешь sent
             )
     else:
         form = GuestForm()
-    return render(request, "guestbook/new.html", {
-        "form": form,
-        "title": "Pizda"
-    })
+
+    return render(request, "guestbook/new.html", {"form": form, "title": "Guestbook"})
+
     
         
 def list_guest(request):

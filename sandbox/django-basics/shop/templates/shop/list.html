@@ -1,0 +1,25 @@
+{% extends "pages/base.html" %}
+{% block pages_content %}
+<h1>Товары</h1>
+
+<p><a href="{% url 'shop:new' %}">Добавить товар</a></p>
+
+<ul style="display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:16px; list-style:none; padding:0;">
+  {% for p in items %}
+    <li style="border:1px solid #ddd; padding:10px;">
+      <div style="height:160px; display:flex; align-items:center; justify-content:center; overflow:hidden; background:#fafafa;">
+        {% if p.image %}
+          <img src="{{ p.image.url }}" alt="{{ p.title }}" style="max-width:100%; max-height:160px;">
+        {% else %}
+          <span style="color:#999;">без изображения</span>
+        {% endif %}
+      </div>
+      <h3 style="margin:8px 0 4px;">{{ p.title }}</h3>
+      <div><strong>{{ p.price }}</strong> ₼</div>
+      <p style="font-size:0.9em; color:#555;">{{ p.description|default:"—" }}</p>
+    </li>
+  {% empty %}
+    <li>Пока нет товаров</li>
+  {% endfor %}
+</ul>
+{% endblock %}
