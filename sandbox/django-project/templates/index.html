@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>Text API Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <h1>Посты</h1>
+
+<form id="create-form">
+  <div id="errors" style="color: red;"></div>
+  <input type="text" id="title" placeholder="Заголовок" required />
+  <textarea id="body" placeholder="Текст" required></textarea>
+  <button type="submit">Создать</button>
+</form>
+
+
+    <ul id="posts"></ul>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
